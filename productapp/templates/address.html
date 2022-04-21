@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+<!-- {% load static %} -->
+{% block content %}
+<div class="container mt-5 body-div mb-5">
+    <div class="card shadow border-0 w-50 m-auto">
+        <form method="POST" action="">
+            {% csrf_token %}
+            <h2 class="pt-5 pb-3 text-center border-bottom">Delivery Address</h2>
+            {% for field in form %}
+            <div class="row ml-auto pl-5">
+                <div class="col-12">
+                    <p>
+                        {{ field.label_tag }}
+                    <p class="col-12 w-100">
+                        {{ field }}
+                       
+                    </p>
+
+                    {% for error in field.errors %}
+                    <p style="color: red">{{ error }}</p>
+                    {% endfor %}
+                    </p>
+                </div>
+            </div>
+
+            {% endfor %}
+            <div class="row submit-div text-center pb-5">
+                <div class="col-12 ">
+                    <button type="submit" class="bg-primary text-light px-2 py-1 ">Submit</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container full-div">
+    <div class="row mb-5" style="margin-top: 10%;">
+        <div class="col-8 m-auto ">
+            <h2>Order List</h2>
+        </div>
+    </div>
+    <div class="table-div col-12">
+    
+        
+        {% for group in user.groups.all %}
+        {% if group.name == 'Administrator' %}
+        <table class=" w-100 border-bottom">
+            
+    
+            <tr>
+                <th>User ID</th>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Address</th>
+                <th>Action</th>
+            </tr>
+        {% for orders in full_order_list %}
+            <tr>
+                
+                <td>{{orders.user.id}}</td>
+                <td>{{orders.product.name}}</td>
+            
+                <td>{{ orders.Quantity}}</td>
+                <td>{{ orders.price}}</td>
+                <td>{{orders.address.house_name}}, {{ orders.address.Area}},
+                    {{orders.address.pincode}},{{orders.address.city}}
+                
+                </td>
+            
+                <td><a href="{% url 'orderdelete' orders.id %}" class="text-danger  py-1 px-2">Cancel</a>
+                </td>
+            
+            
+            </tr>
+            
+            {% endfor %}
+            
+                          
+                    </table>
+                            
+            {% endif %}
+            {% endfor %}
+            
+
+        {% for group in user.groups.all %}
+        {% if group.name == 'User' %}
+
+<table class=" w-100 border-bottom">
+
+
+    <tr>
+        
+        <th>Name</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Address</th>
+        <th>Action</th>
+    </tr>
+            {% for orders in order_details %}
+    <tr>
+
+        <td>{{orders.product.name}}</td>
+
+        <td>{{ orders.Quantity}}</td>
+        <td>{{ orders.price}}</td>
+        <td>{{orders.address.house_name}},{{ orders.address.Area}},{{orders.address.pincode}},{{orders.address.city}}
+
+        </td>
+
+        <td><a href="{% url 'orderdelete' orders.id %}" class="text-danger  py-1 px-2">Cancel</a>
+        </td>
+
+
+    </tr>
+{% endfor %}
+   
+
+
+</table>
+{% endif %}
+{% endfor %}
+
+
+            
+            </div>
+            </div>
+{% endblock %}

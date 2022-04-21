@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+<style>
+    table,
+    th,
+    td {
+        border: 1px solid rgb(87, 86, 86);
+        text-align: center;
+    }
+
+    
+    th {
+        padding: 15px;
+        background-color: #a1b8a19c;
+        font-size: large;
+    }
+
+    td {
+        padding: 10px;
+    }
+</style>
+<div class="container full-div">
+    <div class="row mb-5" style="margin-top: 10%;">
+        <div class="col-12 text-center">
+            <h3>
+                Category Details</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            {% for message in messages %}
+            <div class="container text-center alert-success p-0">
+                <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="True">&times;</span>
+                    </button>
+                    {{ message }}
+                </div>
+            </div>
+            {% endfor %}
+            <div class="row addnew pb-3 pr-5">
+                <div class="col-12 text-right">
+                    <a href="{% url 'addcategory' %}" class="px-3 py-2 bg-info text-light">Add New</a>
+                </div>
+            </div>
+            <div class="table-div col-12 pb-5">
+                <table style="width:100%">
+
+
+                    <tr>
+                        <th>ID</th>
+
+                        <th>Name</th>
+                        <th>Image</th>
+                        <th>Action</th>
+                       
+
+                    {% for category in category %}
+                    <tr>
+                        <td>{{category.id}}</td>
+
+                        <td>{{category.name}}</td>
+                        <td>{{ category.image}}</td>
+                        <td>
+                            <a href="{% url 'delete' category.id %}" class="px-3 py-2  text-danger">Delete</a>
+                        </td>
+
+
+
+
+
+
+
+                    </tr>
+                    {% endfor %}
+
+
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+{% endblock %}

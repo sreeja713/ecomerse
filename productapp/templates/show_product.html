@@ -1,0 +1,96 @@
+
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+    table,
+    th,
+    td {
+        border: 1px solid rgb(87, 86, 86);
+        text-align: center;
+    }
+
+
+    /* th {
+        padding: 15px;
+        background-color: #a1b8a19c;
+        font-size: large;
+    }
+
+    td {
+        padding: 10px;
+    } */
+</style> 
+<div class="container full-div">
+    <div class="row mb-5" style="margin-top: 10%;">
+        <div class="col-12 text-center">
+            <h3>
+                Product Details</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            {% for message in messages %}
+            <div class="container text-center alert-success p-0">
+                <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="True">&times;</span>
+                    </button>
+                    {{ message }}
+                </div>
+            </div>
+            {% endfor %}
+            <div class="row addnew pb-3 pr-5">
+                <div class="col-12 text-right">
+                    <a href="{% url 'addproduct' %}" class="px-3 py-2 bg-info text-light">Add New</a>
+                </div>
+            </div>
+            <div class="table-div col-12 pb-5">
+                <table style="width:100%">
+
+
+                    <tr>
+                        <th>ID</th>
+
+                        <th>Name</th>
+                       
+                        <th>Price</th>
+                        <th>Category</th>
+                        <th>Created Date</th>
+                        <th>Updated Date</th>
+                        <th>Action</th>
+
+
+                        {% for products in product %}
+                    <tr>
+                        <td>{{products.id}}</td>
+
+                        <td>{{products.name}}</td>
+                        
+                        
+                        <td>{{ products.price}}</td>
+                        <td>{{ products.category}}</td>
+                        <td>{{ products.created_date}}</td>
+                        <td>{{ products.updated_date}}</td>
+                        <td>
+                            <a href="{% url 'productdelete' products.id %}" class="text-danger">Delete</a>
+                        </td>
+
+
+
+
+
+
+
+                    </tr>
+                    {% endfor %}
+
+
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+{% endblock %}

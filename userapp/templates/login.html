@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+<!-- {% load static %} -->
+{% block content %}
+<div class="container login-card mt-5 pt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-7">
+            <div class="card shadow border-0">
+                <div class="card-body px-lg-5 py-lg-5">
+
+                        {% for message in messages %}
+                        <div class="container text-center alert-success p-0">
+                            <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="True">&times;</span>
+                                </button>
+                                {{ message }}
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                    <div class="text-center text-muted mb-4">
+                        <h4>Login to your Account</h4>
+
+                    </div>
+
+                    <form method="POST">
+
+                        {% csrf_token %}
+
+                        <div class="form-group mb-3">
+                            <label>{{form.username.label}}</label>
+                            <div class="input-group input-group-alternative">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                                </div>
+                                {{ form.username }}
+                                {{form.username.errors}}
+                                {% for error in form.username.errors %}
+                                <p style="color: red">{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>{{form.password.label}}</label>
+                            <div class="input-group input-group-alternative">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                                </div>
+                                {{ form.password }}
+                                {% for error in form.password.errors %}
+                                <p style="color: red">{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="custom-control custom-control-alternative custom-checkbox">
+                            <input class="custom-control-input" id=" customCheckLogin" type="checkbox">
+                            <label class="custom-control-label" for=" customCheckLogin">
+                                <span class="text-muted">Remember me</span>
+                            </label>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary my-4">Sign in</button>
+                        </div>
+                    </form>
+                    <div>
+                        <div class="row mt-3">
+                            <div class="col-6">
+                                <a href="{% url 'signup'%}">Register Now</a>
+                            </div>
+                            <div class="col-6 text-right">
+                                <a target="_blank" href="#">Forgot Password ?</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    
+{% endblock %}

@@ -1,0 +1,43 @@
+@media screen and (max-width:850px) 
+    {
+    .carosel-div img{
+
+        height: 400px;
+    }
+    table,
+    th,
+    td {
+    
+        text-align: center;
+        padding: 1px;
+        font-size: 8px;
+    }
+    
+}
+@media screen and (max-width:1500px)
+{
+    li {
+        font-size:15px;
+        text-align: center;
+    }
+}
+.menu-div{
+    font-size: small;
+}
+
+.social-div{
+    font-size: 30px;
+
+}
+
+table,
+th,
+td {
+
+    text-align: center;
+    padding: 10px;
+}
+
+th {
+    border-bottom: 1px solid black;
+}
